@@ -7,11 +7,12 @@ export const SliderContainer = styled.div`
   width: 100%;
   height: 100%;
   margin: auto;
+  overflow: hidden;
   .before {
     position: absolute;
-    top: 0;
+    top: -300px;
     width: 100%;
-    height: 60%;
+    height:400px;
     background: ${style["theme-color"]};
   }
   .slider-container {
