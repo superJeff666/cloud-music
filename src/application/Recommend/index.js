@@ -1,5 +1,6 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { forceCheck } from "react-lazyload";
 import * as actionTypes from "./store/actionCreators";
 import Slider from "../../components/slider";
 import RecommendList from "../../components/list";
@@ -16,11 +17,11 @@ function Recommend(props) {
     getRecommendListDataDispatch();
     //eslint-disable-next-line
   }, []);
-  const bannerListJS = bannerList? bannerList.toJS() : [];
-  const recommendListJS = recommendList ? recommendList.toJS(): [];
+  const bannerListJS = bannerList ? bannerList.toJS() : [];
+  const recommendListJS = recommendList ? recommendList.toJS() : [];
   return (
     <Content>
-      <Scroll>
+      <Scroll className="list" onScroll={forceCheck}>
         <div>
           <Slider bannerList={bannerListJS}></Slider>
           <RecommendList recommendList={recommendListJS}></RecommendList>
@@ -30,7 +31,7 @@ function Recommend(props) {
   );
 }
 const mapStateToProps = state => ({
-  bannerList: state.getIn(["recommend","bannerList"]),
+  bannerList: state.getIn(["recommend", "bannerList"]),
   recommendList: state.getIn(["recommend", "recommendList"])
 });
 const mapDispatchToProps = dispatch => {
