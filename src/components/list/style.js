@@ -21,17 +21,17 @@ export const ListItem = styled.div`
   position: relative;
   width: 32%;
   .img_wrapper {
-    position:relative;
-    height: 0;
-    padding-bottom:100%;
     .decorate {
       position: absolute;
       top:0;
       width: 100%;
       height: 35px;
       border-radius:3px;
-      background: linear-gradient (hsla (0,0%,43%,.4),hsla (0,0%,100%,0));
+      background: linear-gradient(hsla(0,0%,43%,.4),hsla(0,0%,100%,0));
     }
+    position:relative;
+    height: 0;
+    padding-bottom:100%;
     .play_count {
       position:absolute;
       right:2px;
