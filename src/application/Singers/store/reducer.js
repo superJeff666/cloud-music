@@ -10,11 +10,12 @@ const defaultState = fromJS({
 });
 
 export default (state = defaultState, action) => {
+  console.log('state',state)
   switch (action.type) {
     case actionTypes.CHANGE_SINGER_LIST:
       return state.set("singerList", action.data);
     case actionTypes.CHANGE_PAGE_COUNT:
-      return state.get("pageCount", action.data);
+      return state.set("pageCount", action.data);
     case actionTypes.CHANGE_ENTER_LOADING:
       return state.set("enterLoading", action.data);
     case actionTypes.CHANGE_PULLUP_LOADING:

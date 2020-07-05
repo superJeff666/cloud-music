@@ -40,13 +40,13 @@ function Singers(props) {
     // eslint-disable-next-line
   }, []);
 
-  let handleUpdateCategory = (val) => {
-    setCategory(val);
+  let handleUpdateAlpha = (val) => {
+    setAlpha(val);
     updateDispatch(category, val);
   };
 
-  let handleUpdateAlpha = (val) => {
-    setAlpha(val);
+  let handleUpdateCategory = (val) => {
+    setCategory(val);
     updateDispatch(val, alpha);
   };
 
@@ -108,15 +108,15 @@ function Singers(props) {
         <Horizen
           list={categoryTypes}
           title={"分类 (默认热门):"}
-          handleClick={handleUpdateCategory}
+          handleClick={(val) => handleUpdateCategory(val)}
           oldVal={category}
-        />
+        ></Horizen>
         <Horizen
           list={alphaTypes}
           title={"首字母:"}
-          handleClick={handleUpdateAlpha}
+          handleClick={(val) => handleUpdateAlpha(val)}
           oldVal={alpha}
-        />
+        ></Horizen>
       </NavContainer>
       <ListContainer>
         <Scroll
@@ -128,7 +128,7 @@ function Singers(props) {
         >
           {renderSingerList()}
         </Scroll>
-        <Loading show={enterLoading}></Loading>
+        {enterLoading ? <Loading></Loading> : null}
       </ListContainer>
     </div>
   );
