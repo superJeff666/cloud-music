@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Scroll from "../../baseUI/scroll/index";
 import { getRankList } from "./store";
 import Loading from '../../baseUI/loading';
+import { renderRoutes} from "react-router-config";
 import { filterIndex, filterIdx } from "../../api/utils";
 import { SongList, Container, List, ListItem,EnterLoading } from "./style";
 
@@ -18,7 +19,13 @@ function Rank(props) {
   let globalStartIndex = filterIndex(rankList);
   let officialList = rankList.slice(0, globalStartIndex);
   let globalList = rankList.slice(globalStartIndex);
-
+  const enterDetail = (name) => {
+      const idx = filterIdx(name);
+      if(idx === null) {
+         alert('暂无相关数据');
+         return;
+      }
+  }
   const renderSongList = (list) => {
     return list.length ? (
       <SongList>
@@ -37,7 +44,7 @@ function Rank(props) {
       <List globalRank={global}>
         {list.map((item) => {
           return (
-            <ListItem key={item.commentThreadId} tracks={item.tracks}>
+            <ListItem key={item.commentThreadId} tracks={item.tracks} onClick={() => {enterDetail(item.name)}}>
               <div className="img_wrapper">
                 <img src={item.coverImgUrl} alt="" />
                 <div className="decorate"></div>
@@ -66,6 +73,7 @@ function Rank(props) {
           {loading? <EnterLoading><Loading></Loading></EnterLoading>:null}
         </div>
       </Scroll>
+      
     </Container>
   );
 }
